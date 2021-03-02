@@ -1,6 +1,8 @@
+import java.lang.ProcessBuilder.Redirect;
+
 public class ReverseInteger {
     public static void main(String[] args) {
-        int number = 123;
+        int number = 2147483647;
         System.out.println(new Solution7().reverse(number)); 
     }
 }
@@ -12,13 +14,22 @@ public class ReverseInteger {
  * 假设环境不允许存储 64 位整数（有符号或无符号）。
  * 
  * 本题需注意范围
+ * -2^31~2^31    
+ * 2147483648
  */
 class Solution7{
-    public int reverse(int num) {
+    public int reverse(int x) {
         int result = 0;
-        while (num != 0) {
-            result = result * 10 + num % 10;
-            num /= 10;
+        while (x != 0) {
+            int pop = x % 10;
+            result = result * 10 + x % 10;
+            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && pop > 7)){
+                return 0;
+            }
+            if (result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && pop < -8)){
+                return 0;
+            }
+            x /= 10;
         }
         return result;
     }
