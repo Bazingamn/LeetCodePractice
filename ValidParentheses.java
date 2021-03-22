@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class ValidParentheses {
     public static void main(String[] args) {
-        
+        String s = "{}[]";
+        System.out.println(new Solution20().isValid(s));
     }
 }
 
@@ -32,6 +33,7 @@ class Solution20{
             put('{', '}');
             put('[', ']');
         }};
+        
         Deque<Character> stack = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
