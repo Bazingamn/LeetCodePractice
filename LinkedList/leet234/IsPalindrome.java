@@ -70,10 +70,15 @@ class Solution1 {
 
 
 /**
- * 递归
+ * 快慢指针
+ *
+ * 我们可以将链表的后半部分反转（修改链表结构），然后将前半部分和后半部分进行比较。比较完成后我们应该将链表恢复原样。
+ * 虽然不需要恢复也能通过测试用例，但是使用该函数的人通常不希望链表结构被更改。
+ *
+ * 这样可以避免使用O（n）的额外空间
  */
 class Solution2 {
     public boolean isPalindrome(ListNode head) {
-
+        return false;
     }
 }
