@@ -29,8 +29,35 @@ class ListNode {
 }
 
 
+/**
+ * 拆分链表
+ *
+ * 分隔链表时，从链表的头结点开始遍历，记当前结点为curr，对于每个部分，进行如下操作：
+ * 1、将curr 作为当前部分的头结点；
+ * 2、计算当前部分的长度partSize；
+ * 3、将向后移动partSize步，则curr为当前部分的尾结点；
+ * 4、当curr到达当前部分的尾结点时，需要拆分curr和后面一个结点之间的连接关系，在拆分之前需要存储curr的后一个结点next；
+ * 5、令curr的next 指针指向null，完成curr和next的拆分；
+ * 6、将next赋值给curr。
+ *
+ * 完成上述操作之后，即得到分隔链表后的一个部分。重复上述操作，直到分隔出 kk 个部分，或者链表遍历结束，即curr指向null。
+ *
+ */
 class Solution {
     public ListNode[] splitListToParts(ListNode head, int k) {
+        int n = 0;
+        ListNode temp = head;
+        //遍历计算原始链表的长度
+        while (temp != null){
+            n++;
+            temp = temp.next;
+        }
+
+        int quotient = n / k;
+        int remainder = n % k;
+
+        ListNode[] parts = new ListNode[k];
+        ListNode curr = head;
 
     }
 }
