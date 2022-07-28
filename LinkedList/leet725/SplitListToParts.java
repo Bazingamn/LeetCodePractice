@@ -9,6 +9,7 @@ package LinkedList.leet725;
  *
  * 返回一个由上述 k 部分组成的数组。
  *
+ * unfinished
  */
 public class SplitListToParts {
 
@@ -57,7 +58,23 @@ class Solution {
         int remainder = n % k;
 
         ListNode[] parts = new ListNode[k];
+        //1、将curr 作为当前部分的头结点；
         ListNode curr = head;
-
+        for (int i = 0; i < k && curr != null; i++) {
+            parts[i] = curr;
+            //2、计算当前部分的长度partSize；
+            int partSize = quotient + (i < remainder ? 1 : 0);
+            //3、将向后移动partSize步，则curr为当前部分的尾结点；
+            for (int j = 1; j < partSize; j++) {
+                curr = curr.next;
+            }
+            //4、当curr到达当前部分的尾结点时，需要拆分curr和后面一个结点之间的连接关系，在拆分之前需要存储curr的后一个结点next；
+            ListNode next = curr.next;
+            //5、令curr的next 指针指向null，完成curr和next的拆分；
+            curr.next = null;
+            //6、将next赋值给curr。
+            curr = next;
+        }
+        return parts;
     }
 }

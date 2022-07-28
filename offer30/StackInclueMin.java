@@ -1,47 +1,36 @@
 package offer30;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
-public class StackInclueMin {
-    public static void main(String[] args) {
-        
-    }
-}
-
-/**
- * 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
- */
 class MinStack {
 
-    Stack<Integer> A;
-    Stack<Integer> B;
+    Deque<Integer> stack;
+    Deque<Integer> min_stack;
 
     /** initialize your data structure here. */
     public MinStack() {
-        A = new Stack<>();
-        B = new Stack<>();
+        stack = new LinkedList<Integer>();
+        min_stack = new LinkedList<Integer>();
+        min_stack.push(Integer.MAX_VALUE);
     }
-    
+
     public void push(int x) {
-        A.add(x);
-        if (B.empty() || x <= B.peek()) {
-            B.add(x);
-        }
+        stack.push(x);
+        min_stack.push(Math.min(min_stack.peek(), x));
     }
-    
+
     public void pop() {
-        Integer m = A.pop();
-        if (m.equals(B.peek())) {
-            B.pop();
-        }
+        stack.pop();
+        min_stack.pop();
     }
-    
+
     public int top() {
-        return A.peek();
+        return stack.peek();
     }
-    
+
     public int min() {
-        return B.peek();
+        return min_stack.peek();
     }
 }
 
@@ -53,3 +42,6 @@ class MinStack {
  * int param_3 = obj.top();
  * int param_4 = obj.min();
  */
+
+public class StackInclueMin {
+}
